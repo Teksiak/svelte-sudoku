@@ -230,6 +230,7 @@
         let active = document.activeElement;
         let index = displayedCells.indexOf(active);
         currentCell = [index, 0, 0];
+        endHint()
     }
     function updateCurrentCell(row, col) {
         currentCell[1] = row;
@@ -328,17 +329,17 @@
             let hint = document.createElement("input");
             hint.setAttribute(
                 "style",
-                "width: 100%; border: none; font-size: .5em; outline: none; position: absolute; top: -4px; text-align: center; z-index: -1;"
+                "width: 100%; border: none; font-size: .5em; outline: none; position: absolute; top: -1px; text-align: center; z-index: -1;"
             );
             displayedCells[currentCell[0]].before(hint);
             displayedCells[currentCell[0]].previousSibling.focus();
             currentHint = true;
         } else {
             endHint();
-            currentHint = false;
         }
     }
     function endHint() {
+        currentHint = false;
         displayedCells[currentCell[0]].focus();
     }
 
@@ -542,6 +543,7 @@
         height: 1fr;
     }
     button.hint {
+        margin-top: 10px;
         font-size: 1em;
         width: 52px;
     }
